@@ -7,19 +7,27 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		72C79BEA2B24081E00208F05 /* Permission.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72C79BE92B24081E00208F05 /* Permission.swift */; };
 		72D50D1B2B22A09800922C67 /* QRCodeScannerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72D50D1A2B22A09800922C67 /* QRCodeScannerApp.swift */; };
 		72D50D1D2B22A09800922C67 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72D50D1C2B22A09800922C67 /* ContentView.swift */; };
 		72D50D1F2B22A09B00922C67 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 72D50D1E2B22A09B00922C67 /* Assets.xcassets */; };
 		72D50D232B22A09B00922C67 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 72D50D222B22A09B00922C67 /* Preview Assets.xcassets */; };
+		72D50D2B2B22A0D500922C67 /* ScannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72D50D2A2B22A0D500922C67 /* ScannerView.swift */; };
+		72D50D2D2B22AD9000922C67 /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72D50D2C2B22AD9000922C67 /* CameraView.swift */; };
+		72F015E12B27214F0022F5C9 /* QRScannerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72F015E02B27214F0022F5C9 /* QRScannerDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		72C79BE92B24081E00208F05 /* Permission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Permission.swift; sourceTree = "<group>"; };
 		72D50D172B22A09800922C67 /* QRCodeScanner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QRCodeScanner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		72D50D1A2B22A09800922C67 /* QRCodeScannerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeScannerApp.swift; sourceTree = "<group>"; };
 		72D50D1C2B22A09800922C67 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		72D50D1E2B22A09B00922C67 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		72D50D202B22A09B00922C67 /* QRCodeScanner.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = QRCodeScanner.entitlements; sourceTree = "<group>"; };
 		72D50D222B22A09B00922C67 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		72D50D2A2B22A0D500922C67 /* ScannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerView.swift; sourceTree = "<group>"; };
+		72D50D2C2B22AD9000922C67 /* CameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraView.swift; sourceTree = "<group>"; };
+		72F015E02B27214F0022F5C9 /* QRScannerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRScannerDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,6 +41,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		72C79BE82B2407A600208F05 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				72C79BE92B24081E00208F05 /* Permission.swift */,
+				72F015E02B27214F0022F5C9 /* QRScannerDelegate.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		72D50D0E2B22A09800922C67 = {
 			isa = PBXGroup;
 			children = (
@@ -52,6 +69,8 @@
 		72D50D192B22A09800922C67 /* QRCodeScanner */ = {
 			isa = PBXGroup;
 			children = (
+				72C79BE82B2407A600208F05 /* Model */,
+				72D50D292B22A0B600922C67 /* View */,
 				72D50D1A2B22A09800922C67 /* QRCodeScannerApp.swift */,
 				72D50D1C2B22A09800922C67 /* ContentView.swift */,
 				72D50D1E2B22A09B00922C67 /* Assets.xcassets */,
@@ -67,6 +86,15 @@
 				72D50D222B22A09B00922C67 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		72D50D292B22A0B600922C67 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				72D50D2A2B22A0D500922C67 /* ScannerView.swift */,
+				72D50D2C2B22AD9000922C67 /* CameraView.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -139,8 +167,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				72D50D2B2B22A0D500922C67 /* ScannerView.swift in Sources */,
 				72D50D1D2B22A09800922C67 /* ContentView.swift in Sources */,
 				72D50D1B2B22A09800922C67 /* QRCodeScannerApp.swift in Sources */,
+				72D50D2D2B22AD9000922C67 /* CameraView.swift in Sources */,
+				72F015E12B27214F0022F5C9 /* QRScannerDelegate.swift in Sources */,
+				72C79BEA2B24081E00208F05 /* Permission.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -274,6 +306,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "We need to use Camera for scanning QR Codes.";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -312,6 +345,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "We need to use Camera for scanning QR Codes.";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
