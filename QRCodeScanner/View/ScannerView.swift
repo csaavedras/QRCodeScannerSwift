@@ -23,6 +23,7 @@ struct ScannerView: View {
     @StateObject private var qrDelegate = QRScannerDelegate()
     /// Scanned Code
     @State private var scannedCode: String = ""
+    @State private var codeScanned: Bool = false
     var body: some View {
         VStack(spacing: 8) {
             Button {
@@ -34,12 +35,12 @@ struct ScannerView: View {
             }
             .frame(maxWidth: .infinity, alignment: .leading)
             
-            Text("Place the QR code inside the area")
+            Text("Coloca el código QR dentro del área")
                 .font(.title3)
                 .foregroundStyle(.black.opacity(0.8))
                 .padding(.top, 20)
             
-            Text("Scanning will start automatically")
+            Text("El escaneo comenzará automáticamente")
                 .font(.callout)
                 .foregroundStyle(.gray)
             
@@ -93,6 +94,15 @@ struct ScannerView: View {
             }
             
             Spacer(minLength: 45)
+            
+            if codeScanned {
+                Text("Codigo escaneado: ")
+                    .font(.headline)
+                    .foregroundStyle(.black)
+                Text(scannedCode)
+                    .font(.caption)
+                    .foregroundStyle(.black)
+            }
         }
         .padding(15)
         /// Checking Camera Persmission, when the View is Visible
@@ -123,6 +133,8 @@ struct ScannerView: View {
                 deActivateScannerAnimation()
                 /// Clearing the Data on Delegate
                 qrDelegate.scannedCode = nil
+                /// Change State of codeScanned
+                codeScanned = true
             }
         }
     }
