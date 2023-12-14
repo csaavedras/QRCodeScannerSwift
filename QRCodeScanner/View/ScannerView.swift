@@ -126,6 +126,17 @@ struct ScannerView: View {
         }
         .onChange(of: qrDelegate.scannedCode) { newValue in
             if let code = newValue {
+                /// Validation data from MOCK_DATA
+                if let guest = DataLoader.loadMockData().first(where: { $0.code == code }) {
+                    // Código válido
+                    print("Invitado encontrado: \(guest.name) \(guest.lastName)")
+                    // Resto del código...
+                } else {
+                    // Código no válido
+                    print("Código no válido")
+                    // Resto del código...
+                }
+                
                 scannedCode = code
                 /// When the first code scan is available, inmediately stop the camera.
                 session.stopRunning()
@@ -161,7 +172,7 @@ struct ScannerView: View {
         }
     }
     
-   /// Checking Camera Permission
+    /// Checking Camera Permission
     func checkingCameraPermission() {
         Task {
             switch AVCaptureDevice.authorizationStatus(for: .video) {
@@ -233,7 +244,7 @@ struct ScannerView: View {
         errorMessage = message
         showError.toggle()
     }
- }
+}
 
 #Preview {
     ContentView()
