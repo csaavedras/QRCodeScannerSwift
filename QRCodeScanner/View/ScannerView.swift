@@ -7,6 +7,7 @@
 
 import SwiftUI
 import AVKit
+import AVFoundation
 
 struct ScannerView: View {
     /// QR Code Scanner Properties
@@ -26,6 +27,8 @@ struct ScannerView: View {
     @State private var codeScanned: Bool = false
     @State private var showValidationPopup: Bool = false
     @State private var validatedGuest: Guest?
+    @State private var audioPlayer: AVAudioPlayer?
+    
     
     var body: some View {
         VStack(spacing: 8) {
@@ -130,8 +133,13 @@ struct ScannerView: View {
                 }
             }
         }
+        .onAppear(perform: loadSound)
         .onChange(of: qrDelegate.scannedCode) { newValue in
             if let code = newValue {
+                
+                if let audioPlayer = audioPlayer {
+                    audioPlayer.play()
+                }
                 /// Validation data from MOCK_DATA
                 if let guest = DataLoader.loadMockData().first(where: { $0.code == code }) {
                     // Código válido
@@ -156,14 +164,16 @@ struct ScannerView: View {
                 codeScanned = true
                 /// Show Popup Notification
                 showValidationPopup = true
+                
+                
             }
         }
         .sheet(isPresented: $showValidationPopup, content: {
             if let guest = validatedGuest {
-                   PopupNotification(isValid: true, isPresented: $showValidationPopup)
-               } else {
-                   PopupNotification(isValid: false, isPresented: $showValidationPopup)
-               }
+                PopupNotification(isValid: true, isPresented: $showValidationPopup)
+            } else {
+                PopupNotification(isValid: false, isPresented: $showValidationPopup)
+            }
         })
     }
     
@@ -261,6 +271,17 @@ struct ScannerView: View {
         errorMessage = message
         showError.toggle()
     }
+    
+    func loadSound() {
+        if let path = Bundle.main.path(forResource: "check_sound", ofType: "mp3") {
+            do {
+                audioPlayer = try AVAudioPlayer(contentsOf: URL(fileURLWithPath: path))
+            } catch {
+                print("Error loading sound file")
+            }
+        }
+    }
+    
     
     
 }
