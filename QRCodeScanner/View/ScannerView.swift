@@ -99,7 +99,7 @@ struct ScannerView: View {
             Spacer(minLength: 45)
             
             if codeScanned {
-                Text("Codigo escaneado: ")
+                Text("Código escaneado: ")
                     .font(.headline)
                     .foregroundStyle(.black)
                 Text(scannedCode)

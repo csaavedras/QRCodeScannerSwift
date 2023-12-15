@@ -12,8 +12,10 @@ struct PopupNotification: View {
     @Binding var isPresented: Bool
     var body: some View {
         VStack {
-            Text(isValid ? "Entrada válida" : "Código no válido")
+            Spacer()
+            Text(isValid ? "¡Bienvenido! Acceso permitido" : "Lo siento, no estás en la lista de invitados")
                 .font(.title)
+                .multilineTextAlignment(.center) // Centrar el texto incluso si hay un salto de línea
                 .padding()
             
             Image(systemName: isValid ? "checkmark.circle.fill" : "xmark.circle.fill")
@@ -21,12 +23,33 @@ struct PopupNotification: View {
                 .font(.system(size: 60))
                 .padding()
             
-            Button("Aceptar") {
+            Spacer()
+            
+            Button(action: {
                 isPresented = false
+            }) {
+                Text("Aceptar")
+                    .font(.headline)
+                    .foregroundColor(.white)
+                    .padding()
+                    .frame(maxWidth: .infinity)
+                    .background(isValid ? Color.green : Color.red)
+                    .cornerRadius(10)
+                    .frame(maxWidth: 200) // Establecer un ancho máximo para el botón
             }
-            .padding()
+            .padding(.horizontal, 20)
+            .padding(.bottom, 20)
         }
+        
+        .frame(minWidth: 300, idealWidth: 350, maxWidth: .infinity, minHeight: 200, idealHeight: 250, maxHeight: .infinity)
+        .background(Color.white)
+        .cornerRadius(20)
+        .padding()
+        
     }
 }
 
 
+#Preview {
+    PopupNotification(isValid: true, isPresented: .constant(true))
+}
