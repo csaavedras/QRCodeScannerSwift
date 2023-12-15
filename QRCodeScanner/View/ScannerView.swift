@@ -38,13 +38,15 @@ struct ScannerView: View {
             }
             .frame(maxWidth: .infinity, alignment: .leading)
             
-            Text("Coloca el código QR dentro del área")
+            Text("Coloca el código QR dentro del área designada")
                 .font(.title3)
+                .multilineTextAlignment(.center)
                 .foregroundStyle(.black.opacity(0.8))
                 .padding(.top, 20)
             
-            Text("El escaneo comenzará automáticamente")
+            Text("El escaneo se iniciará automáticamente.")
                 .font(.callout)
+                .multilineTextAlignment(.center)
                 .foregroundStyle(.gray)
             
             Spacer(minLength: 0)
