@@ -24,6 +24,9 @@ struct ScannerView: View {
     /// Scanned Code
     @State private var scannedCode: String = ""
     @State private var codeScanned: Bool = false
+    @State private var showValidationPopup: Bool = false
+    @State private var validatedGuest: Guest?
+    
     var body: some View {
         VStack(spacing: 8) {
             Button {
@@ -103,6 +106,7 @@ struct ScannerView: View {
                     .font(.caption)
                     .foregroundStyle(.black)
             }
+            
         }
         .padding(15)
         /// Checking Camera Persmission, when the View is Visible
@@ -131,10 +135,12 @@ struct ScannerView: View {
                     // Código válido
                     print("Invitado encontrado: \(guest.name) \(guest.lastName)")
                     // Resto del código...
+                    validatedGuest = guest
                 } else {
                     // Código no válido
                     print("Código no válido")
                     // Resto del código...
+                    validatedGuest = nil
                 }
                 
                 scannedCode = code
@@ -146,8 +152,17 @@ struct ScannerView: View {
                 qrDelegate.scannedCode = nil
                 /// Change State of codeScanned
                 codeScanned = true
+                /// Show Popup Notification
+                showValidationPopup = true
             }
         }
+        .sheet(isPresented: $showValidationPopup, content: {
+            if let guest = validatedGuest {
+                   PopupNotification(isValid: true, isPresented: $showValidationPopup)
+               } else {
+                   PopupNotification(isValid: false, isPresented: $showValidationPopup)
+               }
+        })
     }
     
     func reactiveCamera() {
@@ -244,6 +259,8 @@ struct ScannerView: View {
         errorMessage = message
         showError.toggle()
     }
+    
+    
 }
 
 #Preview {
